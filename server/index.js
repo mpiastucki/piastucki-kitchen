@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 const port = 9000;
-const pouchdb = require('pouchdb')
-const db = new pouchdb('recipes-db')
+const db = require('./db')
+
+
+
 
 app.get("/", (req, res) => {
-    db.get('1').then(function (doc) {
-        res.send(JSON.stringify(doc))
+    db.db.get('1').then(function (doc) {
+        res.send(JSON.stringify(doc.name))
     })
 })
 
