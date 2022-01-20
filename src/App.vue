@@ -1,14 +1,17 @@
 <template>
   <RecipeList/>
+  <AddRecipeForm/>
 </template>
 
 <script>
 import RecipeList from './components/RecipeList.vue'
+import AddRecipeForm from './components/AddRecipeForm.vue'
 
 export default {
   name: 'App',
   components: {
-    RecipeList
+    RecipeList,
+    AddRecipeForm
   }
 }
 </script>
