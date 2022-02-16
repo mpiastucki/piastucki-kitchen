@@ -1,7 +1,8 @@
 <template>
-    <form action="http://localhost:9000/api/addrecipe">
+    <div class="recipe-form-container">
+        <form class="add-recipe" method="POST" action="/api/addrecipe">
         <label for="recipe-name">Recipe Name
-            <input type="text" name="recipe-name" id="name" required>
+            <input type="text" name="recipe-name" id="recipe-name" required>
         </label>
         <label for="ingredient1">First Ingredient
             <input type="text" name="ingredient1" id="ingredient1">
@@ -23,4 +24,27 @@
         </label>
         <input type="submit">
     </form>
+    </div>
+    
 </template>
+
+
+<style>
+    .add-recipe {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            max-width: 400px;
+
+        }
+        label {
+            margin-bottom: 10px;
+            margin-right: 20px;
+        }
+
+        .recipe-form-container {
+            display: flex;
+            justify-content: center;
+        }
+</style>
