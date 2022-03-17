@@ -57,3 +57,5 @@ const Ingredient = sequelize.define('Ingredient', {
         primaryKey: true
         },
 })
+
+exports.db = sequelize;
