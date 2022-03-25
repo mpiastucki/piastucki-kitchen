@@ -13,14 +13,8 @@
         <label for="ingredient3">Third Ingredient
             <input type="text" name="ingredient3" id="ingredient3">
         </label>
-        <label for="">Breakfast
-            <input type="checkbox">
-        </label>
-        <label for="">Lunch
-            <input type="checkbox">
-        </label>
-        <label for="">Dinner
-            <input type="checkbox">
+        <label for="instructions">Instructions
+            <textarea id="instructions" name="instructions">Put recipe or link here!</textarea>
         </label>
         <input type="submit">
     </form>
