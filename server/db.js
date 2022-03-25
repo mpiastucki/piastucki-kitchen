@@ -1,6 +1,7 @@
-const {Sequelize, Datatypes, Model} = require('sequelize');
+const {Sequelize, DataTypes, Model} = require('sequelize');
 const sequelize = new Sequelize(process.env.DB_URI);
 
+//authenticate sequelize
 (async () => {
     try {
         await sequelize.authenticate();
@@ -12,50 +13,41 @@ const sequelize = new Sequelize(process.env.DB_URI);
 
 const Recipe = sequelize.define('Recipe', {
     id: {
-        type: Datatypes.UUID,
+        type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: Datatypes.UUIDV1,
-    },
-    name: {
-        type: Datatypes.STRING,
-        allowNull: false,
-    },
-})
-
-const RecipeIngredients = sequelize.define('RecipeIngredients', {
-    id: {
-        type: Datatypes.UUID,
-        defaultValue:Datatypes.UUIDV1,
-        primaryKey: true,
+        defaultValue: DataTypes.UUIDV1,
     },
     recipe: {
-        type: Datatypes.UUID,
-        references: {
-            model: Recipe,
-            key:"id"
-        }
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    ingredient: {
-        type: Datatypes.UUID,
-        references: {
-            model: Ingredient,
-            key: "name"
-        }
+    instructions: {
+        type: DataTypes.STRING,
+        defaultValue: "",
     }
 
-}
-)
+});
 
 const Ingredient = sequelize.define('Ingredient', {
-    //TODO: make ingredient table
     id: {
-        type: Datatypes.UUID,
-        defaultValue: Datatypes.UUIDV1,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV1,
         },
-    name: {
-        type: Datatypes.STRING,
+    ingredient: {
+        type: DataTypes.STRING,
         primaryKey: true
         },
-})
+});
 
-exports.db = sequelize;
+Recipe.belongsToMany(Ingredient, {through: 'RecipeIngredients'})
+Ingredient.belongsToMany(Recipe, {through: 'RecipeIngredients'})
+
+
+async function syncAllModels(){
+    await sequelize.sync();
+    console.log("all models synced")
+}
+syncAllModels();
+
+
+module.exports = {sequelize, Recipe, Ingredient};
