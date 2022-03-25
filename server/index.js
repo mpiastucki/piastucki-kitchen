@@ -28,6 +28,7 @@ function addIngredientAssociation(recipeModel, ingredientModel){
     return;
 }
 
+//TODO: return recipes in alphabetical order
 app.get("/api/all", (req, res) => {
     Recipe.findAll().then(allRecipes => JSON.stringify(allRecipes)).then(json => res.status(200).send(json));
 })
