@@ -33,8 +33,9 @@ app.get("/api/all", (req, res) => {
     Recipe.findAll().then(allRecipes => JSON.stringify(allRecipes)).then(json => res.status(200).send(json));
 })
 
+//TODO: refactor to use sequelize and get 3 randomized recipe names
 app.get("/api/threerecipes", (req, res) => {
-    //TODO: refactor to use sequelize and get 3 randomized recipe names
+    
     
 })
 
